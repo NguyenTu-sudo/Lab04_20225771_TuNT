@@ -3,22 +3,19 @@ package hust.soict.dsai.aims.media;
 import java.util.ArrayList;
 import java.util.List;
 
-public class CompactDisc extends Disc {
+public class CompactDisc extends Disc implements Playable {
     private String artist;
     private List<Track> tracks = new ArrayList<>();
 
-    // Constructor
     public CompactDisc(int id, String title, String category, float cost, int length, String director, String artist) {
         super(id, title, category, cost, length, director);
         this.artist = artist;
     }
 
-    // Getter cho nghệ sĩ
     public String getArtist() {
         return artist;
     }
 
-    // Phương thức thêm track
     public void addTrack(Track track) {
         if (tracks.contains(track)) {
             System.out.println("Track already exists: " + track.getTitle());
@@ -28,7 +25,6 @@ public class CompactDisc extends Disc {
         }
     }
 
-    // Phương thức xóa track
     public void removeTrack(Track track) {
         if (tracks.contains(track)) {
             tracks.remove(track);
@@ -38,23 +34,22 @@ public class CompactDisc extends Disc {
         }
     }
 
-    // Phương thức tính tổng độ dài
     @Override
     public int getLength() {
-        return tracks.stream().mapMulti(Track::getLength).sum();
+        return tracks.stream().mapToInt(Track::getLength).sum();
     }
 
-    // Hiển thị thông tin chi tiết
-    public void displayDetails() {
-        System.out.println("CD Title: " + getTitle());
-        System.out.println("Category: " + getCategory());
-        System.out.println("Director: " + getDirector());
-        System.out.println("Artist: " + artist);
-        System.out.println("CD Length: " + getLength() + " minutes.");
-        System.out.println("Cost: $" + getCost());
-        System.out.println("Tracks:");
-        for (Track track : tracks) {
-            System.out.println("- " + track.getTitle() + " (" + track.getLength() + " minutes)");
+    @Override
+    public void play() {
+        if (getLength() > 0) {
+            System.out.println("Đang phát CD: " + this.getTitle());
+            System.out.println("Nghệ sĩ: " + this.getArtist());
+            System.out.println("Tổng thời lượng CD: " + this.getLength() + " minutes.");
+            for (Track track : tracks) {
+                track.play(); // Gọi phương thức play() của từng track
+            }
+        } else {
+            System.out.println("Không thể phát CD vì độ dài không hợp lệ.");
         }
     }
 }
