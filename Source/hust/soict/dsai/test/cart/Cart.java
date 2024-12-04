@@ -5,12 +5,12 @@ import java.util.ArrayList;
 import java.util.List;
 
 import hust.soict.dsai.aims.disc.DVD;
+import hust.soict.dsai.aims.media.Media;
 
 public class Cart {
+	private ArrayList<Media> itemsOrdered = new ArrayList<>();
     private List<CartItem> items;
     private double totalCost;
-    private int quantity;
-
     public Cart() {
         items = new ArrayList<>();
         totalCost = 0;
@@ -25,7 +25,7 @@ public class Cart {
         }
         updateTotalCost();
     }
-    //Lab03 ------------
+    //Lab03 ---------
     public void addDigitalVideoDisc(DVD[] dvdList) {
         for (DVD dvd : dvdList) {
             addItem(dvd);
@@ -67,7 +67,35 @@ public class Cart {
     }
 
     //---------------
-    
+    //lab04
+    public void addMedia(Media media) {
+        if (itemsOrdered.contains(media)) {
+            System.out.println("Media đã có trong giỏ hàng: " + media.getTitle());
+        } else {
+            itemsOrdered.add(media);
+            System.out.println("Đã thêm vào giỏ hàng: " + media.getTitle());
+        }
+    }
+    public void removeMedia(Media media) {
+        if (itemsOrdered.contains(media)) {
+            itemsOrdered.remove(media);
+            System.out.println("Đã xóa khỏi giỏ hàng: " + media.getTitle());
+        } else {
+            System.out.println("Media không có trong giỏ hàng: " + media.getTitle());
+        }
+    }
+    public float totalCost() {
+        return (float) itemsOrdered.stream().mapToDouble(Media::getCost).sum();
+    }
+    public void displayCart() {
+        System.out.println("Nội dung giỏ hàng:");
+        for (Media media : itemsOrdered) {
+            System.out.println("- " + media.getTitle() + " | Giá: " + media.getCost() + " | Loại: " + media.getClass().getSimpleName());
+        }
+        System.out.println("Tổng chi phí: " + totalCost());
+    }
+
+    //
     public void removeItem(String dvdId) {
         items.removeIf(item -> item.getDvd().getId().equals(dvdId));
         updateTotalCost();
