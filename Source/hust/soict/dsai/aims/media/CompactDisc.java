@@ -52,4 +52,10 @@ public class CompactDisc extends Disc implements Playable {
             System.out.println("Không thể phát CD vì độ dài không hợp lệ.");
         }
     }
+    @Override
+public String toString() {
+    return "Book [Title: " + this.title + ", Category: " + this.category + 
+           ", Cost: " + this.cost + ", Authors: " + String.join(", ", authors) + "]";
+}
+
 }

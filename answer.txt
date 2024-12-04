@@ -1,2 +1,40 @@
 10.If the passing object is not an instance of Media, what happens?
 Nếu đối tượng không phải là thể hiện của lớp Media, phương thức equals() sẽ không tiếp tục so sánh các thuộc tính và trả về false.
+11.Iterate through the list and print out the information of the media by using toString() method. Observe what happens and explain in detail.
+Giải thích chi tiết:
+Đối tượng Book:
+
+Phương thức toString() của lớp Book được gọi, in ra thông tin tiêu đề, thể loại, giá và danh sách tác giả.
+Đối tượng DigitalVideoDisc:
+
+Phương thức toString() của lớp DigitalVideoDisc được gọi, in ra thông tin tiêu đề, thể loại, đạo diễn, độ dài (phút) và giá.
+Đối tượng CompactDisc:
+
+Phương thức toString() của lớp CompactDisc được gọi, in ra thông tin tiêu đề, thể loại, nghệ sĩ, đạo diễn, tổng độ dài của các bài hát và danh sách các bài hát.
+Đa hình:
+Phương thức toString() trong mỗi lớp con (Book, DigitalVideoDisc, CompactDisc) thể hiện tính đa hình, vì mỗi lớp có cách triển khai riêng của phương thức này. 
+Khi gọi toString() trên một đối tượng của kiểu Media, Java sẽ tự động gọi phương thức toString() tương ứng của lớp cụ thể mà đối tượng đó là thể hiện.
+12.
+1. Lớp nào nên triển khai giao diện Comparable?
+Lớp cần triển khai Comparable là các lớp mà bạn muốn so sánh các đối tượng của lớp đó theo một thứ tự tự nhiên (thứ tự mặc định) trong danh sách hoặc tập hợp. Trong trường hợp này, các lớp như Media, Book, DigitalVideoDisc, và CompactDisc có thể triển khai giao diện Comparable, vì chúng đều là các đối tượng có thể sắp xếp trong giỏ hàng.
+2. Triển khai phương thức compareTo() như thế nào để phản ánh thứ tự mà chúng ta muốn?
+Để sử dụng phương thức compareTo() trong các lớp này, chúng ta sẽ triển khai phương thức compareTo() sao cho nó phản ánh thứ tự mà chúng ta muốn sắp xếp.
+3. Chúng ta có thể có hai quy tắc sắp xếp của mục (theo tiêu đề rồi đến giá và theo giá rồi đến tiêu đề) nếu chúng ta sử dụng phương pháp tiếp cận giao diện Comparable này không?
+Không. Một lớp chỉ có thể có một quy tắc sắp xếp "mặc định" duy nhất thông qua phương thức compareTo(). Khi bạn triển khai giao diện Comparable, bạn phải xác định một thứ tự tự nhiên duy nhất cho lớp đó (ví dụ: so sánh theo tiêu đề rồi đến giá hoặc theo giá rồi đến tiêu đề).
+
+Tuy nhiên, nếu bạn muốn hỗ trợ nhiều cách sắp xếp, bạn vẫn có thể sử dụng Comparable để cung cấp một thứ tự mặc định, và sau đó sử dụng Comparator để triển khai các cách sắp xếp khác. Comparator có thể được truyền vào các phương thức sắp xếp như Collections.sort() để thay đổi cách sắp xếp mà không cần thay đổi thứ tự mặc định.
+
+4. Giả sử DVD có quy tắc sắp xếp khác với các loại phương tiện khác, tức là theo tiêu đề, sau đó giảm dần độ dài, rồi đến giá. Bạn sẽ sửa đổi mã của mình như thế nào để cho phép điều này?
+Để cho phép DVD có quy tắc sắp xếp khác với các loại phương tiện khác, bạn có thể triển khai phương thức compareTo() trong lớp DigitalVideoDisc sao cho nó tuân thủ quy tắc sắp xếp đặc biệt (theo tiêu đề, giảm dần độ dài, rồi đến giá).
+
+Cách thực hiện: Bạn sẽ ghi đè phương thức compareTo() trong lớp DigitalVideoDisc thay vì sử dụng phương thức compareTo() của lớp Media:
+Giải thích:
+compareTo() trong DigitalVideoDisc: Chúng ta ghi đè phương thức compareTo() trong lớp DigitalVideoDisc để thay đổi quy tắc sắp xếp cho DVD. DVD sẽ được sắp xếp theo tiêu đề, sau đó theo độ dài giảm dần (dùng Integer.compare() để so sánh độ dài), và cuối cùng là giá (nếu độ dài giống nhau).
+super.compareTo(other): Nếu đối tượng không phải là DigitalVideoDisc, phương thức sẽ gọi compareTo() từ lớp cha Media để thực hiện so sánh theo thứ tự mặc định (tiêu đề và giá).
+Với cách này, bạn có thể tùy chỉnh quy tắc sắp xếp cho các loại phương tiện khác nhau trong cùng một hệ thống.
+
+
+
+
+
+

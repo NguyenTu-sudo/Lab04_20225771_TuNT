@@ -12,6 +12,7 @@ public class Disc extends Media {
     }
 
     // Getters
+    
     public int getLength() {
         return length;
     }
