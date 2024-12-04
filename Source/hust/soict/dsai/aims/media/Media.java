@@ -13,6 +13,24 @@ public abstract class Media {
         this.category = category;
         this.cost = cost;
     }
+ @Override
+    public boolean equals(Object obj) {
+        // Nếu so sánh với chính nó
+        if (this == obj) {
+            return true;
+        }
+
+        // Nếu đối tượng truyền vào là null hoặc không phải là kiểu Media
+        if (obj == null || getClass() != obj.getClass()) {
+            return false;
+        }
+
+        // Ép kiểu đối tượng truyền vào thành Media
+        Media otherMedia = (Media) obj;
+
+        // Kiểm tra tiêu đề của Media
+        return this.title != null && this.title.equals(otherMedia.title);
+    }
 
 	// Getters and Setters
     public int getId() {
