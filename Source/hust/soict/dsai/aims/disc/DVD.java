@@ -28,6 +28,21 @@ public class DVD {
         this.director = "Unknown";
         this.length = 0;
     }
+    //lab04
+    public class DigitalVideoDisc extends Disc {
+        // Constructor
+        public DigitalVideoDisc(int id, String title, String category, float cost, int length, String director) {
+            super(id, title, category, cost, length, director);
+        }
+        public void displayDetails() {
+            System.out.println("DVD Title: " + getTitle());
+            System.out.println("Category: " + getCategory());
+            System.out.println("Director: " + getDirector());
+            System.out.println("DVD Length: " + getLength() + " minutes.");
+            System.out.println("Cost: $" + getCost());
+        }
+    }
+//
     //Lab3
     public static int getNbDigitalVideoDiscs() {
         return nbDigitalVideoDiscs;
