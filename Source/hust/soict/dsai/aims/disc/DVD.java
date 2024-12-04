@@ -42,6 +42,12 @@ public class DVD {
             System.out.println("Cost: $" + getCost());
         }
     }
+    @Override
+public String toString() {
+    return "DVD [Title: " + this.title + ", Category: " + this.category + 
+           ", Director: " + this.director + ", Length: " + this.length + " minutes, Cost: " + this.cost + "]";
+}
+
 //
     //Lab3
     public static int getNbDigitalVideoDiscs() {

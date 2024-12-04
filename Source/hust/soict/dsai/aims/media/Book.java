@@ -29,7 +29,7 @@ public class Book extends Media {
             System.out.println("Author not found in the list.");
         }
     }
-}
+
 //Hiển thị thông tin chi tiết của sách
 public void displayDetails() {
     System.out.println("Book ID: " + getId());
@@ -39,4 +39,10 @@ public void displayDetails() {
     System.out.println("Authors: " + (authors.isEmpty() ? "No authors listed." : String.join(", ", authors)));
     System.out.println("Content Length: " + getTitle().split("\\s+").length + " tokens.");
 }
+@Override
+public String toString() {
+    return "Book [Title: " + this.title + ", Category: " + this.category + 
+           ", Cost: " + this.cost + ", Authors: " + String.join(", ", authors) + "]";
+}
+
 }
