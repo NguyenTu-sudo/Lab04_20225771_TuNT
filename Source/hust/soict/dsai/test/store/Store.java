@@ -5,15 +5,39 @@ import java.util.ArrayList;
 import java.util.List;
 
 import hust.soict.dsai.aims.disc.DVD;
+import hust.soict.dsai.aims.media.Media;
 
 public class Store {
-    private List<DVD> itemsInStore;
+	private ArrayList<Media> itemsInStore = new ArrayList<>();
 
     // Constructor
     public Store() {
         itemsInStore = new ArrayList<>();
     }
-
+//lab04
+    public void addMedia(Media media) {
+        if (itemsInStore.contains(media)) {
+            System.out.println("Media đã tồn tại trong kho: " + media.getTitle());
+        } else {
+            itemsInStore.add(media);
+            System.out.println("Đã thêm vào kho: " + media.getTitle());
+        }
+    }
+    public void removeMedia(Media media) {
+        if (itemsInStore.contains(media)) {
+            itemsInStore.remove(media);
+            System.out.println("Đã xóa khỏi kho: " + media.getTitle());
+        } else {
+            System.out.println("Media không tồn tại trong kho: " + media.getTitle());
+        }
+    }
+    public void displayStore() {
+        System.out.println("Nội dung trong kho:");
+        for (Media media : itemsInStore) {
+            System.out.println("- " + media.getTitle() + " | Giá: " + media.getCost() + " | Loại: " + media.getClass().getSimpleName());
+        }
+    }
+//
     // Thêm một hust.soict.dsai.aims.disc vào cửa hàng
     public void addDVD(DVD dvd) {
         if (dvd != null) {
