@@ -1,0 +1,2 @@
+10.If the passing object is not an instance of Media, what happens?
+Nếu đối tượng không phải là thể hiện của lớp Media, phương thức equals() sẽ không tiếp tục so sánh các thuộc tính và trả về false.
